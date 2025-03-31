@@ -4,10 +4,12 @@ import { BooksContext } from "../context/BooksContext";
 
 export default function Books() {
   const query = new URLSearchParams(useLocation().search);
-  const search = query.get('search') || ''
+  const search = query.get("search") || "";
   const books = useContext(BooksContext);
 
-  const filteredBooks = books;
+  const filteredBooks = books.filter((b) =>
+    b.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
